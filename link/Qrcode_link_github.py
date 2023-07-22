@@ -1,6 +1,5 @@
 import qrcode # pip install qrcode
 import customtkinter as ctk # pip install customtkinter
-import tkinter as tk
 
 link = ""
 generated_qrcode_path = ""
@@ -24,15 +23,28 @@ def create_interface():
 
 
     main_frame = ctk.CTk()    # Criando frame principal
-    main_frame.geometry("600x400")
+    main_frame.geometry("600x300")
     main_frame.title("QR code generator")
     main_frame.resizable(False, False)
 
-    l_label = ctk.CTkLabel(master=main_frame, text="Insira a URL de destino:")
-    l_label.place(x=45, y=10)
+    l_link = ctk.CTkLabel(master=main_frame, text="Insira a URL de destino:")
+    l_link.place(x=45, y=50)
 
     c_link = ctk.CTkEntry(master=main_frame, width=200, height=30, corner_radius=8)
-    c_link.place(x=10, y=40)
+    c_link.place(x=10, y=80)
+
+    l_path = ctk.CTkLabel(master=main_frame, text="Insira a URL de destino:")
+    l_path.place(x=45, y=110)
+
+    c_path = ctk.CTkEntry(master=main_frame, width=200, height=30, corner_radius=8)
+    c_path.place(x=10, y=140)
+
+    b_create = ctk.CTkButton(master=main_frame, width=200, height=30, text="Create")
+    b_create.place(x=10, y=190)
+
+    qrcode_frame = ctk.CTkFrame(master=main_frame, width=370, height= 280)
+    qrcode_frame.place(x=220, y=10)
+
 
 
 
