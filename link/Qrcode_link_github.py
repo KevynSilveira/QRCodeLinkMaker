@@ -34,14 +34,18 @@ def create_interface():
     def create_qrcode():
         try:
             global generated_qrcode_path, link
-            link = c_link.get()
-            select_path()
-            if c_link.get() != "" and generated_qrcode_path != "":
-                image = qrcode.make(link)  # Controi o qrcode
-                image.save(generated_qrcode_path)  # Salva ele no local selecionado
-                messagebox.showinfo("QR code", "Seu QR code foi gerado")
+            link_path = c_link.get()
+            if link_path != "":
+                select_path()
+                if generated_qrcode_path != "":
+                    link = c_link.get()
+                    image = qrcode.make(link)  # Controi o qrcode
+                    image.save(generated_qrcode_path)  # Salva ele no local selecionado
+                    messagebox.showinfo("QR code", "Seu QR code foi gerado")
+                else:
+                    messagebox.showerror("Atencao", "Selecione um caminho valido!")
             else:
-                messagebox.showerror("Atencao", "Atencao, preencha todos os campos!")
+                messagebox.showerror("Atencao", "Atencao, insira um link!")
         except:
             messagebox.showerror("Atencao", "Dados invalidos!")
 
