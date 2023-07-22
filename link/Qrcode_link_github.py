@@ -1,11 +1,9 @@
 import qrcode # pip install qrcode
 import customtkinter as ctk # pip install customtkinter
-from tkinter import filedialog
 from tkinter import messagebox
-import tkinter as tk
 
 link = ""
-generated_qrcode_path = ""
+name_qrcode = "qrcode.png"
 
 def create_interface():
 
@@ -15,56 +13,35 @@ def create_interface():
     main_frame.resizable(False, False)
 
     l_link = ctk.CTkLabel(master=main_frame, text="Insira a URL de destino:")
-    l_link.place(x=45, y=50)
+    l_link.place(x=45, y=90)
 
     c_link = ctk.CTkEntry(master=main_frame, width=200, height=30, corner_radius=8)
-    c_link.place(x=10, y=80)
-
-    def select_path():  # Seleciona a pasta para salvar o arquivo
-        pasta_selecionada = filedialog.askdirectory(title="Selecione uma pasta")  # Seleciona a pasta para salvar
-        if pasta_selecionada:
-            global generated_qrcode_path
-            generated_qrcode_path = pasta_selecionada
-            c_path.insert(tk.END, pasta_selecionada)
-            return pasta_selecionada
-        else:
-            return None
-            messagebox.showerror("Caminho destino", "Selecione um arquivo!")
+    c_link.place(x=10, y=120)
 
     def create_qrcode():
         try:
-            global generated_qrcode_path, link
+            global name_qrcode, link
             link_path = c_link.get()
             if link_path != "":
-                select_path()
-                if generated_qrcode_path != "":
+                if name_qrcode != "":
                     link = c_link.get()
                     image = qrcode.make(link)  # Controi o qrcode
-                    image.save(generated_qrcode_path)  # Salva ele no local selecionado
+                    image.save(name_qrcode)  # Salva ele no local selecionado
                     messagebox.showinfo("QR code", "Seu QR code foi gerado")
                 else:
-                    messagebox.showerror("Atencao", "Selecione um caminho valido!")
+                    messagebox.showerror("Atencao", "Selecione um nome!")
             else:
                 messagebox.showerror("Atencao", "Atencao, insira um link!")
         except:
             messagebox.showerror("Atencao", "Dados invalidos!")
 
-    l_path = ctk.CTkLabel(master=main_frame, text="Insira a URL de destino:")
-    l_path.place(x=45, y=110)
-
-    c_path = ctk.CTkEntry(master=main_frame, width=200, height=30, corner_radius=8)
-    c_path.place(x=10, y=140)
-
     b_create = ctk.CTkButton(master=main_frame, width=200, height=30, text="Create", command=create_qrcode)
-    b_create.place(x=10, y=180)
+    b_create.place(x=10, y=160)
 
     qrcode_frame = ctk.CTkFrame(master=main_frame, width=370, height= 280)
     qrcode_frame.place(x=220, y=10)
 
-
-
     main_frame.mainloop()
-
 
 create_interface()
 
