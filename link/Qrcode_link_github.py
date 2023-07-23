@@ -1,3 +1,5 @@
+import os
+
 import qrcode # pip install qrcode
 import customtkinter as ctk # pip install customtkinter
 from tkinter import messagebox
@@ -6,7 +8,7 @@ from PIL import Image, ImageTk
 link = ""
 name_qrcode = "qrcode.png"
 
-def create_interface():
+def create_interface(): # Cria a interface
 
     main_frame = ctk.CTk()    # Criando frame principal
     main_frame.geometry("510x300")
@@ -26,6 +28,13 @@ def create_interface():
             if link_path != "":
                 if name_qrcode != "":
                     link = c_link.get()
+                    if os.path.exists(name_qrcode): # Se tiver um arquivo existente com o mesmo nome, ele apaga e cria um novo, para a axibicao no frame
+                        try:
+                            os.remove(name_qrcode)
+                            print(f"Arquivo {name_qrcode} foi removido!")
+                        except OSError as e:
+                            print(f"Ocorreu um erro ao apagar o arquivo: {e}")
+
                     image = qrcode.make(link)  # Controi o qrcode
                     image.save(name_qrcode)  # Salva ele no local selecionado
                     messagebox.showinfo("QR code", "Seu QR code foi gerado")
