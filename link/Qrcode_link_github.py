@@ -31,15 +31,14 @@ def create_interface(): # Cria a interface
                 print(f"Ocorreu um erro ao apagar o arquivo: {e}")
         try:
             link_path = c_link.get()
-            if link_path != "":
-                if name_qrcode != "":
-                    link = c_link.get()
+            if link_path != "": # Verifica se o link esta vazio
+                if name_qrcode != "": # Verifica se o name do arquivo esta vazio
+                    link = c_link.get() # Pega o link do c_link
                     image = qrcode.make(link)  # Controi o qrcode
                     image.save(name_qrcode)  # Salva ele no local selecionado
                     messagebox.showinfo("QR code", "Seu QR code foi gerado")
 
-                    # Remove o QR code anterior do frame qrcode_frame
-                    for widget in qrcode_frame.winfo_children():
+                    for widget in qrcode_frame.winfo_children(): # Remove o QR code anterior do frame qrcode_frame
                         widget.destroy()
 
                     # Carrega a imagem gerada e exibe-a no frame qrcode_frame
