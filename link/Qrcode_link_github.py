@@ -22,22 +22,25 @@ def create_interface(): # Cria a interface
     c_link.place(x=10, y=120)
 
     def create_qrcode():
+        global name_qrcode, link
+        if os.path.exists(name_qrcode):  # Se tiver um arquivo existente com o mesmo nome, ele apaga e cria um novo, para a axibicao no frame
+            try:
+                os.remove(name_qrcode)
+                print(f"Arquivo {name_qrcode} foi removido!")
+            except OSError as e:
+                print(f"Ocorreu um erro ao apagar o arquivo: {e}")
         try:
-            global name_qrcode, link
             link_path = c_link.get()
             if link_path != "":
                 if name_qrcode != "":
                     link = c_link.get()
-                    if os.path.exists(name_qrcode): # Se tiver um arquivo existente com o mesmo nome, ele apaga e cria um novo, para a axibicao no frame
-                        try:
-                            os.remove(name_qrcode)
-                            print(f"Arquivo {name_qrcode} foi removido!")
-                        except OSError as e:
-                            print(f"Ocorreu um erro ao apagar o arquivo: {e}")
-
                     image = qrcode.make(link)  # Controi o qrcode
                     image.save(name_qrcode)  # Salva ele no local selecionado
                     messagebox.showinfo("QR code", "Seu QR code foi gerado")
+
+                    # Remove o QR code anterior do frame qrcode_frame
+                    for widget in qrcode_frame.winfo_children():
+                        widget.destroy()
 
                     # Carrega a imagem gerada e exibe-a no frame qrcode_frame
                     qr_image = Image.open(name_qrcode)
