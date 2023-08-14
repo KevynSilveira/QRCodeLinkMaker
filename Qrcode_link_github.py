@@ -21,7 +21,7 @@ def create_interface(): # Cria a interface
     c_link = ctk.CTkEntry(master=main_frame, width=200, height=30, corner_radius=8)
     c_link.place(x=10, y=120)
 
-    def create_qrcode():
+    def create_qrcode(): # Cria o qrcode
         global name_qrcode, link
         if os.path.exists(name_qrcode):  # Se tiver um arquivo existente com o mesmo nome, ele apaga e cria um novo, para a axibicao no frame
             try:
