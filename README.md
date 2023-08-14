@@ -1,0 +1,1 @@
+QRLinkMaker é uma aplicação em Python de fácil utilização que permite aos usuários gerar códigos QR para URLs de forma simples e rápida. Com uma interface gráfica intuitiva, os usuários podem criar facilmente códigos QR para qualquer link desejado, facilitando o compartilhamento e o acesso a endereços da web.
