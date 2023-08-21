@@ -52,7 +52,7 @@ def create_interface(): # Cria a interface
                 else:
                     messagebox.showerror("Atencao", "Selecione um nome!")
             else:
-                messagebox.showerror("Atencao", "Atencao, insira um link!")
+                messagebox.showerror("Atencao", "Atenção, insira um link!")
         except Exception as e:
             messagebox.showerror("Atencao", f"Erro ao gerar QR code: {str(e)}")
             print(e)
