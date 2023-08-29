@@ -47,7 +47,7 @@ def create_interface(): # Cria a interface
                     qr_photo = ImageTk.PhotoImage(qr_image)
 
                     qr_label = ctk.CTkLabel(master=qrcode_frame, image=qr_photo, width=280, height=280)
-                    qr_label.image = qr_photo  # Mantém uma referência para evitar o garbage collection
+                    qr_label.image = qr_photo
                     qr_label.pack(fill="both", expand=True)
                 else:
                     messagebox.showerror("Atencao", "Selecione um nome!")
