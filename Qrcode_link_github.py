@@ -55,7 +55,7 @@ def create_interface(): # Cria a interface
                 messagebox.showerror("Atencao", "Atenção, insira um link!")
         except Exception as e:
             messagebox.showerror("Atencao", f"Erro ao gerar QR code: {str(e)}")
-            print(e)
+            print(e) # Exibi a excecao
 
     b_create = ctk.CTkButton(master=main_frame, width=200, height=30, text="Create QR code", command=create_qrcode)
     b_create.place(x=10, y=160)
